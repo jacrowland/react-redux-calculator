@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App" style={styles}>
       <Calculator/>
-      <p style={{fontSize: '0.8rem'}}>Made by <a target="_blank" href="https://jacobrowland.me">Jacob Rowland</a></p>
+      <p style={{fontSize: '0.8rem'}}>Made by <a target="_blank" rel="noreferrer" href="https://jacobrowland.me">Jacob Rowland</a></p>
     </div>
   );
 }
