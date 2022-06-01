@@ -15,7 +15,7 @@ const reducer = (state = defaultState, action) => {
         case 'ADD':
             return {
                 display: '+',
-                formula: state.formula.includes('=') ? state.formula.split('=').at(-1) + '+' : (operations.includes(state.formula.substring(state.formula.length-1)) || operations.includes(state.formula.substring(state.formula.length-2)) === '+' ? state.formula.substring(0, state.formula.length-2) + '+' : state.formula + '+')
+                formula: state.formula.includes('=') ? state.formula.split('=').at(-1) + '+' : (operations.includes(state.formula.substring(state.formula.length-1)) || operations.includes(state.formula.substring(state.formula.length-1)) === '+' ? state.formula.substring(0, state.formula.length-1) + '+' : state.formula + '+')
             };
         case 'SUBTRACT':
             return {
