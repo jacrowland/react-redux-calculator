@@ -9,13 +9,15 @@ const styles = {
   backgroundColor: '#d5c6f5',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  flexDirection: 'column'
 }
 
 function App() {
   return (
     <div className="App" style={styles}>
       <Calculator/>
+      <p style={{fontSize: '0.8rem'}}>Made by <a href="https://jacobrowland.me">Jacob Rowland</a></p>
     </div>
   );
 }

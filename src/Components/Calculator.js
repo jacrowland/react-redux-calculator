@@ -1,8 +1,10 @@
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
 
 import { actionCreators } from "../State/index"
 import Button from "./Button"
+import FormulaScreen from "./FormulaScreen"
+import DisplayScreen from "./DisplayScreen"
 
 const styles = {
     backgroundColor: 'black',
@@ -20,37 +22,16 @@ const outputStyles = {
     textAlign: 'right',
     marginBottom: 10
 }
-const formulaScreenStyles = {
-    height: '1rem',
-    fontSize: '0.9rem',
-    marginBottom: '3px',
-    marginTop: '3px',
-    color: 'orange'
-}
 
-const outputScreenStyles = {
-    fontSize: '1.4rem',
-    marginBottom: '3px',
-    height: '1.4rem'
-}
 
 const Calculator = props => {
-
-    const state = useSelector((state) => state)
     const dispatch = useDispatch();
-    const { clearFormula, add, subtract, multiply, divide, pushDigit, evaluateFormula, addDecimalPoint } = bindActionCreators(actionCreators, dispatch); // can destructure these to get actions
-
-    console.log(state);
-
+    const { clearFormula, add, subtract, multiply, divide, pushDigit, evaluateFormula, addDecimalPoint } = bindActionCreators(actionCreators, dispatch);
     return (
         <div style={styles}>
             <div id="screens" style={outputStyles}>
-                <div id="formula-screen" style={formulaScreenStyles}>
-                {state.operations.formula.length > 25 ? 'FORMULA LIMIT EXCEEDED' : state.operations.formula}
-                </div>
-                <div id="display" style={outputScreenStyles}>
-                    {state.operations.display.length > 15 ? 'DIGI LIMIT EXCEEDED' : state.operations.display}
-                </div>
+                <FormulaScreen/>
+                <DisplayScreen/>
             </div>
             <div id="buttons" className="grid grid-col-4" style={{height: '100%'}}>
                 <Button id="clear" style={{gridColumnStart: 1, gridColumnEnd: 3, backgroundColor: '#912d2d'}} onClick={() => clearFormula()}value="AC"/>

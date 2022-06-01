@@ -5,7 +5,7 @@ const Button = (props) => {
 
     let style = {
         border: hover ? '1px solid darkGrey' : '1px solid black',
-        color: hover? 'black' : 'white',
+        color: hover ? 'black' : 'white',
         backgroundColor: 'rgb(50, 50, 50)',
         fontSize: 'large',
         transition: '0.2s ease'
