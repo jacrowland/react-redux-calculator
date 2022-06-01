@@ -1,3 +1,4 @@
+import { evaluate } from "mathjs";
 const defaultState = {
     display: '0',
     formula: ''
@@ -14,30 +15,35 @@ const reducer = (state = defaultState, action) => {
         case 'ADD':
             return {
                 display: '+',
-                formula: operations.includes(state.formula.substring(state.formula.length-1)) || operations.includes(state.formula.substring(state.formula.length-2)) === '+' ? state.formula.substring(0, state.formula.length-2) + '+' : state.formula + '+'
+                formula: state.formula.includes('=') ? state.formula.split('=').at(-1) + '+' : (operations.includes(state.formula.substring(state.formula.length-1)) || operations.includes(state.formula.substring(state.formula.length-2)) === '+' ? state.formula.substring(0, state.formula.length-2) + '+' : state.formula + '+')
             };
         case 'SUBTRACT':
             return {
                 display: '-',
-                formula: operations.includes(state.formula.substring(state.formula.length-1)) && state.formula.substring(state.formula.length-1) !== '+' ? state.formula.substring(0, state.formula.length-1) + '-' : state.formula + '-'
+                formula: state.formula.includes('=') ? state.formula.split('=').at(-1) + '-' : (operations.includes(state.formula.substring(state.formula.length-1)) && state.formula.substring(state.formula.length-1) !== '+' ? state.formula.substring(0, state.formula.length-1) + '-' : state.formula + '-')
             };
         case 'DIVIDE':
             console.log(state.formula.substring(state.formula.length-1));
             return {
                 display: '/',
-                formula: operations.includes(state.formula.substring(state.formula.length-1)) ? state.formula.substring(0, state.formula.length-1) + '/' : state.formula + '/'
+                formula: state.formula.includes('=') ? state.formula.split('=').at(-1) + '/' : (operations.includes(state.formula.substring(state.formula.length-1)) ? state.formula.substring(0, state.formula.length-1) + '/' : state.formula + '/')
             };
         case 'MULTIPLY':
             return {
                 display: '*',
-                formula: operations.includes(state.formula.substring(state.formula.length-1)) ? state.formula.substring(0, state.formula.length-1) + '*' : state.formula + '*'
+                formula: state.formula.includes('=') ? state.formula.split('=').at(-1) + '*' : (operations.includes(state.formula.substring(state.formula.length-1)) ? state.formula.substring(0, state.formula.length-1) + '*' : state.formula + '*')
             };
         case 'EQUALS':
-            const result = parseFloat(eval(state.formula).toFixed(2));
-            return {
-                formula: state.formula + '=' + result,
-                display: result
-            };
+            if (state.formula.includes('=')) {
+                return state
+            }
+            else {
+                const result = parseFloat(evaluate(state.formula).toFixed(2));
+                return {
+                    formula: state.formula + '=' + result,
+                    display: result
+                };
+            }
         case 'DECIMAL':
             return {
                 display: state.display.includes('.') ? state.display : operations.includes(state.display.substring(state.display.length-1)) ? '0.' : state.display + '.',
