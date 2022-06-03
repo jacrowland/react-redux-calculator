@@ -41,8 +41,8 @@ const Calculator = props => {
                 <Button id="nine"  onClick={() => pushDigit(9)} value="9"/>
                 <Button id="subtract"  onClick={() => subtract()} style={{backgroundColor: 'rgb(100, 100, 100)'}} value="-"/>
                 <Button id="four"  onClick={() => pushDigit(4)} value="4"/>
-                <Button id="five"  onClick={() => pushDigit(4)} value="5"/>
-                <Button id="six"  onClick={() => pushDigit(4)} value="6"/>
+                <Button id="five"  onClick={() => pushDigit(5)} value="5"/>
+                <Button id="six"  onClick={() => pushDigit(6)} value="6"/>
                 <Button id="add"  onClick={() => add()} style={{backgroundColor: 'rgb(100, 100, 100)'}} value="+"/>
                 <Button id="one"  onClick={() => pushDigit(1)} value="1"/>
                 <Button id="two"  onClick={() => pushDigit(2)} value="2"/>
